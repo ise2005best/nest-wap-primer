@@ -1,18 +1,20 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+// This imports all the necessary information into our main.ts to run
 
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { NestFactory } from '@nestjs/core'; // this creates a nest js application
+import { AppModule } from './app.module'; //this imports the app.module into the main.ts
+
+import { NestExpressApplication } from '@nestjs/platform-express'; // this specifies express as our server engine 
 import { join } from 'path';
 
-import * as nunjucks from 'nunjucks';
+import * as nunjucks from 'nunjucks'; // this imports nunjucks which is a template engine that allows one to render dynamic content
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const express = app.getHttpAdapter().getInstance();
+  const app = await NestFactory.create<NestExpressApplication>(AppModule); // this creates a nest.js application and passes the app.module as the root module
+  const express = app.getHttpAdapter().getInstance(); // the HttpAdapter is responsible for handling http request and response on nest.js application
 
-  const views = join(__dirname, '..', 'views');
+  const views = join(__dirname, '..', 'views'); // this joins the views folder into our main.ts
 
-  nunjucks.configure(views, { express });
+  nunjucks.configure(views, { express }); // this uses the item in the views folder and the express constant to be hosted on the Express server
 
   await app.listen(3000);
 }
