@@ -14,8 +14,11 @@ async function bootstrap() {
 
   const views = join(__dirname, '..', 'views'); // this joins the views folder into our main.ts
 
-  nunjucks.configure(views, { express }); // this uses the item in the views folder and the express constant to be hosted on the Express server
+  nunjucks.configure(views, { express }); // this uses the item in the views folder and the express constant to be hosted on the nunjucks template engine
 
+  // this incoperates the static folder into our main.ts
+  const staticAssets = join(__dirname, '..', 'static');
+  app.useStaticAssets(staticAssets); // usestaticassets is a function that lets us imports static files
   await app.listen(3000);
 }
 bootstrap();
