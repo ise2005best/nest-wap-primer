@@ -18,7 +18,7 @@ async function bootstrap() {
 
   // this incoperates the static folder into our main.ts
   const staticAssets = join(__dirname, '..', 'static');
-  app.useStaticAssets(staticAssets); // usestaticassets is a function that lets us imports static files
+  app.useStaticAssets(staticAssets); // useStaticAssets is a function that lets us imports static files
   await app.listen(3000);
 }
 bootstrap();
